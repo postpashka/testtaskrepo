@@ -2,6 +2,10 @@
   "name": "react-redux-realworld-example-app",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "node": "8.14.1",
+    "npm": "6.4.1"
+  },
   "devDependencies": {
     "cross-env": "^5.1.4",
     "react-scripts": "1.1.1"

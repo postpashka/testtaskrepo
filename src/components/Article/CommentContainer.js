@@ -11,7 +11,7 @@ const CommentContainer = props => {
           <list-errors errors={props.errors}></list-errors>
           <CommentInput slug={props.slug} currentUser={props.currentUser} />
         </div>
-
+        
         <CommentList
           comments={props.comments}
           slug={props.slug}

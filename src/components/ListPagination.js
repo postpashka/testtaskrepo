@@ -28,7 +28,7 @@ const ListPagination = props => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination d-inline-block text-center">
 
         {
           range.map(v => {
@@ -39,7 +39,7 @@ const ListPagination = props => {
             };
             return (
               <li
-                className={ isCurrent ? 'page-item active' : 'page-item' }
+                className={ isCurrent ? 'page-item active d-inline-block' : 'page-item d-inline-block' }
                 onClick={onClick}
                 key={v.toString()}>
 

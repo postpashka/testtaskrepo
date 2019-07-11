@@ -48,61 +48,60 @@ class Register extends React.Component {
     const username = this.props.username;
 
     return (
-      <div className="auth-page">
-        <div className="container page">
-          <div className="row">
+      <div className="register-box">
+        <ListErrors errors={this.props.errors} />
+        <div className="card">
+          <div className="card-body">
 
-            <div className="col-md-6 offset-md-3 col-xs-12">
-              <h1 className="text-xs-center">Sign Up</h1>
-              <p className="text-xs-center">
-                <Link to="/login">
-                  Have an account?
-                </Link>
-              </p>
+            <h1 className="text-center">Sign Up</h1>
+            <p className="text-center">
+              <Link to="/login">
+                Have an account?
+              </Link>
+            </p>
 
-              <ListErrors errors={this.props.errors} />
 
-              <form onSubmit={this.submitForm(username, email, password)}>
-                <fieldset>
+            <form onSubmit={this.submitForm(username, email, password)}>
+              <fieldset>
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="text"
-                      placeholder="Username"
-                      value={this.props.username}
-                      onChange={this.changeUsername} />
-                  </fieldset>
+                <fieldset className="form-group">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Username"
+                    value={this.props.username}
+                    onChange={this.changeUsername} />
+                </fieldset>
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="email"
-                      placeholder="Email"
-                      value={this.props.email}
-                      onChange={this.changeEmail} />
-                  </fieldset>
+                <fieldset className="form-group">
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="Email"
+                    value={this.props.email}
+                    onChange={this.changeEmail} />
+                </fieldset>
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="password"
-                      placeholder="Password"
-                      value={this.props.password}
-                      onChange={this.changePassword} />
-                  </fieldset>
+                <fieldset className="form-group">
+                  <input
+                    className="form-control"
+                    type="password"
+                    placeholder="Password"
+                    value={this.props.password}
+                    onChange={this.changePassword} />
+                </fieldset>
 
+                <div className="form-group text-center">
                   <button
-                    className="btn btn-lg btn-primary pull-xs-right"
+                    className="btn btn-default"
                     type="submit"
                     disabled={this.props.inProgress}>
                     Sign up
                   </button>
+                </div>
 
-                </fieldset>
-              </form>
-            </div>
-
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>

@@ -30,7 +30,7 @@ class CommentInput extends React.Component {
 
   render() {
     return (
-      <form className="card comment-form" onSubmit={this.createComment}>
+      <form className="card comment-form my-3" onSubmit={this.createComment}>
         <div className="card-block">
           <textarea className="form-control"
             placeholder="Write a comment..."
@@ -39,16 +39,21 @@ class CommentInput extends React.Component {
             rows="3">
           </textarea>
         </div>
-        <div className="card-footer">
-          <img
-            src={this.props.currentUser.image}
-            className="comment-author-img"
-            alt={this.props.currentUser.username} />
-          <button
-            className="btn btn-sm btn-primary"
-            type="submit">
-            Post Comment
-          </button>
+        <div className="card-block p-1">
+          <div className="media">
+            <img
+              src={this.props.currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'}
+              className="comment-author-img direct-chat-img"
+              alt={this.props.currentUser.username} />
+              <div className="media-body align-self-center">
+                <span className="pull-left px-2 py-1">{this.props.currentUser.username}</span>
+                <button
+                  className="btn btn-sm btn-primary pull-right"
+                  type="submit">
+                  Post Comment
+                </button>
+              </div>
+          </div>
         </div>
       </form>
     );

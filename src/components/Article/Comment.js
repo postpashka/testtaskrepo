@@ -7,28 +7,34 @@ const Comment = props => {
   const show = props.currentUser &&
     props.currentUser.username === comment.author.username;
   return (
-    <div className="card">
-      <div className="card-block">
-        <p className="card-text">{comment.body}</p>
-      </div>
-      <div className="card-footer">
-        <Link
-          to={`/@${comment.author.username}`}
-          className="comment-author">
-          <img src={comment.author.image} className="comment-author-img" alt={comment.author.username} />
-        </Link>
-        &nbsp;
-        <Link
-          to={`/@${comment.author.username}`}
-          className="comment-author">
-          {comment.author.username}
-        </Link>
-        <span className="date-posted">
-          {new Date(comment.createdAt).toDateString()}
-        </span>
-        <DeleteButton show={show} slug={props.slug} commentId={comment.id} />
+    <div className="card my-2">
+      <div className="card-block p-1">
+        <div className="direct-chat-msg">
+          <div className="direct-chat-info clearfix">
+            <Link
+              to={`/@${comment.author.username}`}
+              className="direct-chat-name float-left">
+              {comment.author.username}
+            </Link>
+            <span className="date-posted direct-chat-timestamp float-right">
+              {new Date(comment.createdAt).toDateString()}
+            </span>
+            <span className="float-right">
+              <DeleteButton show={show} slug={props.slug} commentId={comment.id} />
+            </span>
+          </div>
+          <Link
+            to={`/@${comment.author.username}`}
+            className="comment-author direct-chat-img">
+            <img src={comment.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'} className="comment-author-img direct-chat-img" alt={comment.author.username} />
+          </Link>
+          <div class="direct-chat-text">
+            {comment.body}
+          </div>
+        </div>
       </div>
     </div>
+
   );
 };
 

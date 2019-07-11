@@ -39,56 +39,50 @@ class Article extends React.Component {
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
     return (
-      <div className="article-page">
+      <div className="container article-page">
 
-        <div className="banner">
-          <div className="container">
+        <div className="row article-content">
+          <div className="col-md-12">
 
-            <h1>{this.props.article.title}</h1>
-            <ArticleMeta
-              article={this.props.article}
-              canModify={canModify} />
+            <div className="card m-3">
+              <div className="card-body">
+                <ArticleMeta
+                  article={this.props.article}
+                  canModify={canModify} />
+                 <h1>{this.props.article.title}</h1>
+                 <div dangerouslySetInnerHTML={markup}></div>
 
-          </div>
-        </div>
-
-        <div className="container page">
-
-          <div className="row article-content">
-            <div className="col-xs-12">
-
-              <div dangerouslySetInnerHTML={markup}></div>
-
-              <ul className="tag-list">
-                {
-                  this.props.article.tagList.map(tag => {
-                    return (
-                      <li
-                        className="tag-default tag-pill tag-outline"
-                        key={tag}>
-                        {tag}
-                      </li>
-                    );
-                  })
-                }
-              </ul>
-
+                 <ul className="tag-list p-0">
+                   {
+                     this.props.article.tagList.map(tag => {
+                       return (
+                         <li
+                           className="badge badge-success tag-default tag-pill tag-outline"
+                           key={tag}>
+                           {tag}
+                         </li>
+                       );
+                     })
+                   }
+                 </ul>
+              </div>
             </div>
-          </div>
 
-          <hr />
-
-          <div className="article-actions">
-          </div>
-
-          <div className="row">
-            <CommentContainer
-              comments={this.props.comments || []}
-              errors={this.props.commentErrors}
-              slug={this.props.match.params.id}
-              currentUser={this.props.currentUser} />
           </div>
         </div>
+
+
+        <div className="article-actions">
+        </div>
+
+        <div className="row">
+          <CommentContainer
+            comments={this.props.comments || []}
+            errors={this.props.commentErrors}
+            slug={this.props.match.params.id}
+            currentUser={this.props.currentUser} />
+        </div>
+
       </div>
     );
   }

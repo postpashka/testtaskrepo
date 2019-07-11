@@ -1,11 +1,12 @@
 import React from 'react';
+import Tags from './Home/Tags';
 import { Link } from 'react-router-dom';
 import agent from '../agent';
 import { connect } from 'react-redux';
 import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from '../constants/actionTypes';
 
-const FAVORITED_CLASS = 'btn btn-sm btn-primary';
-const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
+const FAVORITED_CLASS = 'btn btn-sm btn-success';
+const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-success';
 
 const mapDispatchToProps = dispatch => ({
   favorite: slug => dispatch({
@@ -34,44 +35,44 @@ const ArticlePreview = props => {
   };
 
   return (
-    <div className="article-preview">
-      <div className="article-meta">
-        <Link to={`/@${article.author.username}`}>
-          <img src={article.author.image} alt={article.author.username} />
-        </Link>
-
-        <div className="info">
-          <Link className="author" to={`/@${article.author.username}`}>
-            {article.author.username}
+    <div className="article-preview card my-3">
+      <div className="card-body">
+        <div className="article-meta media">
+          <Link to={`/@${article.author.username}`}>
+            <img src={article.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'} alt={article.author.username} className="direct-chat-img"/>
           </Link>
-          <span className="date">
-            {new Date(article.createdAt).toDateString()}
-          </span>
+          <div className="media-body align-self-center">
+            <Link className="author pull-left px-2" to={`/@${article.author.username}`}>
+              {article.author.username}
+            </Link>
+            <span className="date pull-right">
+              {new Date(article.createdAt).toDateString()}
+            </span>
+          </div>
         </div>
+        <div className="article-body">
+          <h1>{article.title}</h1>
+          <p>{article.description}</p>
+          <ul className="tag-list p-0">
 
-        <div className="pull-xs-right">
+            {
+              article.tagList.map(tag => {
+                return (
+                  <li className="tag-default badge badge-success m-1" key={tag}>
+                    {tag}
+                  </li>
+                )
+              })
+            }
+          </ul>
+          <Link to={`/article/${article.slug}`} className={favoriteButtonClass}>
+            <span>Read more...</span>
+          </Link>
           <button className={favoriteButtonClass} onClick={handleClick}>
             <i className="ion-heart"></i> {article.favoritesCount}
           </button>
         </div>
       </div>
-
-      <Link to={`/article/${article.slug}`} className="preview-link">
-        <h1>{article.title}</h1>
-        <p>{article.description}</p>
-        <span>Read more...</span>
-        <ul className="tag-list">
-          {
-            article.tagList.map(tag => {
-              return (
-                <li className="tag-default tag-pill tag-outline" key={tag}>
-                  {tag}
-                </li>
-              )
-            })
-          }
-        </ul>
-      </Link>
     </div>
   );
 }

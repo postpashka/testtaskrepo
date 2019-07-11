@@ -52,14 +52,16 @@ class Home extends React.Component {
             <MainView />
 
             <div className="col-md-3">
-              <div className="sidebar">
+              <div className="sidebar card">
+                <div className="card-body">
 
-                <p>Popular Tags</p>
+                  <h3>Popular Tags</h3>
 
-                <Tags
-                  tags={this.props.tags}
-                  onClickTag={this.props.onClickTag} />
+                  <Tags
+                    tags={this.props.tags}
+                    onClickTag={this.props.onClickTag} />
 
+                </div>
               </div>
             </div>
           </div>

@@ -57,7 +57,7 @@ const LoggedInView = props => {
           <Link
             to={`/@${props.currentUser.username}`}
             className="nav-link">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
+            <img src={props.currentUser.image} className="user-pic" />
             {props.currentUser.username}
           </Link>
         </li>
@@ -72,7 +72,7 @@ const LoggedInView = props => {
 class Header extends React.Component {
   render() {
     return (
-      <nav className="navbar navbar-light">
+      <nav className="navbar main-header navbar navbar-expand border-bottom navbar-light bg-white">
         <div className="container">
 
           <Link to="/" className="navbar-brand">

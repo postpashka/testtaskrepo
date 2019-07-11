@@ -16,7 +16,7 @@ const Tags = props => {
             return (
               <a
                 href=""
-                className="tag-default tag-pill"
+                className="tag-default badge badge-success m-1"
                 key={tag}
                 onClick={handleClick}>
                 {tag}

@@ -76,7 +76,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"
+              className="form-control"
               type="text"
               placeholder="Username"
               value={this.state.username}
@@ -85,7 +85,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <textarea
-              className="form-control form-control-lg"
+              className="form-control"
               rows="8"
               placeholder="Short bio about you"
               value={this.state.bio}
@@ -95,7 +95,7 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"
+              className="form-control"
               type="email"
               placeholder="Email"
               value={this.state.email}
@@ -104,19 +104,27 @@ class SettingsForm extends React.Component {
 
           <fieldset className="form-group">
             <input
-              className="form-control form-control-lg"
+              className="form-control"
               type="password"
               placeholder="New Password"
               value={this.state.password}
               onChange={this.updateState('password')} />
           </fieldset>
+          <hr />
+          <div className="form-group text-center">        
+            <button
+              className="btn btn-default pull-right"
+              type="submit"
+              disabled={this.state.inProgress}>
+              Update Settings
+            </button>
+            <button
+              className="btn btn-outline-danger pull-left"
+              onClick={this.props.onClickLogout}>
+              Or click here to logout.
+            </button>
+          </div>
 
-          <button
-            className="btn btn-lg btn-primary pull-xs-right"
-            type="submit"
-            disabled={this.state.inProgress}>
-            Update Settings
-          </button>
 
         </fieldset>
       </form>
@@ -142,24 +150,17 @@ class Settings extends React.Component {
       <div className="settings-page">
         <div className="container page">
           <div className="row">
-            <div className="col-md-6 offset-md-3 col-xs-12">
-
-              <h1 className="text-xs-center">Your Settings</h1>
-
+            <div className="col-md-6 offset-md-3 col-xs-12 my-3">
               <ListErrors errors={this.props.errors}></ListErrors>
-
-              <SettingsForm
-                currentUser={this.props.currentUser}
-                onSubmitForm={this.props.onSubmitForm} />
-
-              <hr />
-
-              <button
-                className="btn btn-outline-danger"
-                onClick={this.props.onClickLogout}>
-                Or click here to logout.
-              </button>
-
+              <div className="card">
+                <div className="card-body">
+                  <h1 className="text-center">Your Settings</h1>
+                  <SettingsForm
+                    onClickLogout={this.props.onClickLogout}
+                    currentUser={this.props.currentUser}
+                    onSubmitForm={this.props.onSubmitForm} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

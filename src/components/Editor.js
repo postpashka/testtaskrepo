@@ -96,77 +96,78 @@ class Editor extends React.Component {
       <div className="editor-page">
         <div className="container page">
           <div className="row">
-            <div className="col-md-10 offset-md-1 col-xs-12">
+            <div className="col-md-6 offset-md-3 col-xs-12 my-3">
 
               <ListErrors errors={this.props.errors}></ListErrors>
+              <div className="card">
+                <div className="card-body">
+                  <form>
+                    <fieldset>
 
-              <form>
-                <fieldset>
+                      <fieldset className="form-group">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Article Title"
+                          value={this.props.title}
+                          onChange={this.changeTitle} />
+                      </fieldset>
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="text"
-                      placeholder="Article Title"
-                      value={this.props.title}
-                      onChange={this.changeTitle} />
-                  </fieldset>
+                      <fieldset className="form-group">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="What's this article about?"
+                          value={this.props.description}
+                          onChange={this.changeDescription} />
+                      </fieldset>
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="What's this article about?"
-                      value={this.props.description}
-                      onChange={this.changeDescription} />
-                  </fieldset>
+                      <fieldset className="form-group">
+                        <textarea
+                          className="form-control"
+                          rows="8"
+                          placeholder="Write your article (in markdown)"
+                          value={this.props.body}
+                          onChange={this.changeBody}>
+                        </textarea>
+                      </fieldset>
 
-                  <fieldset className="form-group">
-                    <textarea
-                      className="form-control"
-                      rows="8"
-                      placeholder="Write your article (in markdown)"
-                      value={this.props.body}
-                      onChange={this.changeBody}>
-                    </textarea>
-                  </fieldset>
+                      <fieldset className="form-group">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Enter tags"
+                          value={this.props.tagInput}
+                          onChange={this.changeTagInput}
+                          onKeyUp={this.watchForEnter} />
 
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter tags"
-                      value={this.props.tagInput}
-                      onChange={this.changeTagInput}
-                      onKeyUp={this.watchForEnter} />
+                        <div className="tag-list">
+                          {
+                            (this.props.tagList || []).map(tag => {
+                              return (
+                                <span className="tag-default tag-pill" key={tag}>
+                                  <i  className="ion-close-round"
+                                      onClick={this.removeTagHandler(tag)}>
+                                  </i>
+                                  {tag}
+                                </span>
+                              );
+                            })
+                          }
+                        </div>
+                      </fieldset>
+                      <button
+                        className="btn pull-xs-right btn-success"
+                        type="button"
+                        disabled={ !this.props.title && !this.props.description && !this.props.body && !this.props.tagInput}
+                        onClick={this.submitForm}>
+                        Publish Article
+                      </button>
 
-                    <div className="tag-list">
-                      {
-                        (this.props.tagList || []).map(tag => {
-                          return (
-                            <span className="tag-default tag-pill" key={tag}>
-                              <i  className="ion-close-round"
-                                  onClick={this.removeTagHandler(tag)}>
-                              </i>
-                              {tag}
-                            </span>
-                          );
-                        })
-                      }
-                    </div>
-                  </fieldset>
-
-                  <button
-                    className="btn btn-lg pull-xs-right btn-primary"
-                    type="button"
-                    disabled={this.props.inProgress}
-                    onClick={this.submitForm}>
-                    Publish Article
-                  </button>
-
-                </fieldset>
-              </form>
-
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
